@@ -10,7 +10,8 @@ where tbl.relnamespace = $1
     select *
     from pg_constraint cst
     where cst.connamespace = $1
-      and cst.confrelid = tbl.oid
-      and col.attnum = any (cst.confkey)
+      and cst.conrelid = tbl.oid
+      and col.attnum = any (cst.conkey)
+      and cst.contype = 'f'
   )
 ;
